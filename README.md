@@ -1,11 +1,11 @@
 # Accelerometer-Data-Collection-and-Processing
 
-This collection of scripts configures the Adafruit ISM330DHCX + LIS3MDL FeatherWing to capture accelerometer data, 
+This project configures the Adafruit ISM330DHCX + LIS3MDL FeatherWing to capture accelerometer data, 
 logs it via serial communication into a CSV file, and visualizes the data in graphs for further analysis.
 
 ## Table of Contents
 1. [What is this for?](#what-is-this-for)
-2. [How to use it?](#how-to-use-it)
+2. [How to use it](#how-to-use-it)
 3. [Prerequisites](#prerequisites)
 4. [Notes](#notes)
 5. [Troubleshooting](#troubleshooting)
@@ -14,55 +14,57 @@ logs it via serial communication into a CSV file, and visualizes the data in gra
 
 ## What is this for?
 
-This project is part of a bridge monitoring system, where accelerometer data is used to assess the structural health 
-of small to medium-sized bridges. By capturing and analyzing vibration data, this system aids in early detection of 
-potential issues. The scripts provided here are used to collect raw data from the ISM330D sensor, save it to a CSV file, 
-and plot it for analysis.
+This project is part of a bridge monitoring system where accelerometer data is used to assess the structural health 
+of small to medium-sized bridges. By capturing and analyzing vibration data, this system aids in the early detection of potential 
+structural issues. The scripts provided here collect raw data from the ISM330D sensor, save it to a CSV file, and plot it for analysis.
 
-## How to use it!
+## How to use it
 
-1. **Compile and upload** the ISM330DHCX/Graphing files to your microcontroller to start data collection from the ISM330D.
-   - Connect ESP32 or Arduino to ISM330DHCX Accelerometer
-   - Get Ardunio IDE
-   - Download LIS3MDL & LSM6DS and related libraries on the IDE
-   - Note: before running my code run some example code to make sure ESP32 or Ardunio connects to accelerometer
+1. **Compile and upload** the accelerometer data collection files to your microcontroller to start data collection from the ISM330D.
+   - Connect your ESP32 or Arduino to the ISM330DHCX accelerometer.
+   - Install the Arduino IDE and add the LIS3MDL and LSM6DS libraries in the IDE.
+   - **Note**: Run example code from the library first to verify that the ESP32 or Arduino connects to the accelerometer.
+
 2. **Run** `SerialToCsv.py` to save the serial data into a CSV file.
-   - This script should create the csv file in the same dir
-   - Make sure that you close Arduino IDE or any application that monitors the serial port before running this script
-   - Make sure that you have the correct ports and baud rate
-4. **Visualize** the data using `CsvToGraph.py` to generate graphs for insight into the collected data.
-   - If you have both python files in the same folder/dir then when you run SerialToCSV.py you can use the csv said script made
-   - If you have the python files in seperate folders/dir then make sure you have a csv file in the same dir or provide a path to the csv you want to use for the graph
-5. Need to knows:
-  - If your acclerometer is just resting and not moving then the graph is going to look linear with one of the axis seperated (the one being affected by gravity).
-  - If you move the acclerometer around then you will get a grapg similar to this.
-  - The CSV provided in examples is what is showin the the graph below.
-  - Your csv should look similar to the one provided.
+   - This script should create the CSV file in the same directory.
+   - Close the Arduino IDE or any application monitoring the serial port before running this script.
+   - Ensure you are using the correct port and baud rate.
+
+3. **Visualize** the data using `CsvToGraph.py` to generate graphs of the collected data.
+   - If both Python scripts are in the same directory, `SerialToCSV.py` will save the CSV there, which `CsvToGraph.py` can access directly.
+   - If the scripts are in separate directories, place the CSV file in the same directory as `CsvToGraph.py` or specify the path to the CSV file.
+
+4. **Important Information**:
+   - When the accelerometer is stationary, the graph will look linear, with one axis offset by gravity.
+   - Moving the accelerometer will produce a graph with more variation in the axes.
+   - Your CSV output should look similar to the example provided.
+   - The example CSV provided is the data shown in the graph below.
 
 ## Prerequisites
 
 - **Hardware**:
   - Adafruit ESP32 Feather Board
   - Adafruit ISM330DHCX + LIS3MDL FeatherWing
+
 - **Software**:
   - Python 3.x
-  - Required libraries:
+  - Required Python libraries:
     ```bash
     pip install csv pyserial matplotlib
     ```
-  - Ardunio IDE
-  - Required libraries: LIS3MDL & LSM6DS by Adafruit
+  - Arduino IDE
+  - Required Arduino libraries: LIS3MDL & LSM6DS by Adafruit
 
 ## Notes
 
-- Read the instructions thoroughly before starting data collection.
-- Ensure the ESP32 and accelerometer are connected properly for data accuracy.
+- Read all instructions thoroughly before starting data collection.
+- Ensure the ESP32 and accelerometer are connected correctly to maintain data accuracy.
 
 ## Troubleshooting
 
-- **No data in CSV**: Ensure the serial connection is configured correctly and that the ESP32 is outputting data.
-- **Graphing issues**: Confirm that SerialToCsv.py has correctly formatted the data before running CsvToGraph.py.
-- **Python import errors**: Verify that all required libraries are installed.
+- **No data in CSV**: Verify that the serial connection is configured correctly and that the ESP32 is outputting data.
+- **Graphing issues**: Ensure `SerialToCsv.py` has formatted the data correctly before running `CsvToGraph.py`.
+- **Python import errors**: Confirm that all required Python libraries are installed.
 
 ## Disclaimer
 
