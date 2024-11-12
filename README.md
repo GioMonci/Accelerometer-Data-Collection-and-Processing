@@ -19,19 +19,25 @@ of small to medium-sized bridges. By capturing and analyzing vibration data, thi
 potential issues. The scripts provided here are used to collect raw data from the ISM330D sensor, save it to a CSV file, 
 and plot it for analysis.
 
-## How to use it?
+## How to use it!
 
-1. **Compile and upload** the ISM330DHCX/Graphing files to the ESP32 to start data collection from the ISM330D.
+1. **Compile and upload** the ISM330DHCX/Graphing files to your microcontroller to start data collection from the ISM330D.
    - Connect ESP32 or Arduino to ISM330DHCX Accelerometer
    - Get Ardunio IDE
-   - Download LIS3MDL & LSM6DS and realted libraries on the IDE
+   - Download LIS3MDL & LSM6DS and related libraries on the IDE
    - Note: before running my code run some example code to make sure ESP32 or Ardunio connects to accelerometer
 2. **Run** `SerialToCsv.py` to save the serial data into a CSV file.
    - This script should create the csv file in the same dir
    - Make sure that you close Arduino IDE or any application that monitors the serial port before running this script
-   - Make sure that you have the correct ports and baud rate at what your using.
+   - Make sure that you have the correct ports and baud rate
 4. **Visualize** the data using `CsvToGraph.py` to generate graphs for insight into the collected data.
-   - AAAAAA
+   - If you have both python files in the same folder/dir then when you run SerialToCSV.py you can use the csv said script made
+   - If you have the python files in seperate folders/dir then make sure you have a csv file in the same dir or provide a path to the csv you want to use for the graph
+5. Need to knows:
+  - If your acclerometer is just resting and not moving then the graph is going to look linear with one of the axis seperated (the one being affected by gravity).
+  - If you move the acclerometer around then you will get a grapg similar to this.
+  - The CSV provided in examples is what is showin the the graph below.
+  - Your csv should look similar to the one provided.
 
 ## Prerequisites
 
