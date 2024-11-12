@@ -22,8 +22,15 @@ and plot it for analysis.
 ## How to use it?
 
 1. **Compile and upload** the ISM330DHCX/Graphing files to the ESP32 to start data collection from the ISM330D.
+   - Connect ESP32 or Arduino to ISM330DHCX Accelerometer
+   - Get Ardunio IDE
+   - Download LIS3MDL & LSM6DS and realted libraries on the IDE
+   - Note: before running my code run some example code to make sure ESP32 or Ardunio connects to accelerometer
 2. **Run** `SerialToCsv.py` to save the serial data into a CSV file.
-3. **Visualize** the data using `CsvToGraph.py` to generate graphs for insight into the collected data.
+   - This script should create the csv file in the same dir
+   - Make sure that you Close Arduino IDE and change COM and serial monitor. (Finish later)
+4. **Visualize** the data using `CsvToGraph.py` to generate graphs for insight into the collected data.
+   -
 
 ## Prerequisites
 
@@ -36,6 +43,8 @@ and plot it for analysis.
     ```bash
     pip install csv pyserial matplotlib
     ```
+  - Ardunio IDE
+  - Required libraries: LIS3MDL & LSM6DS by Adafruit
 
 ## Notes
 
