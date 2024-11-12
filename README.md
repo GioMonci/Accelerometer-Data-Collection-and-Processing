@@ -38,7 +38,9 @@ structural issues. The scripts provided here collect raw data from the ISM330D s
    - When the accelerometer is stationary, the graph will look linear, with one axis offset by gravity.
    - Moving the accelerometer will produce a graph with more variation in the axes.
    - Your CSV output should look similar to the example provided.
+   - [Sensor_Data.csv](Examples/sensor_data.csv)
    - The example CSV provided is the data shown in the graph below.
+   ![Example Graph](Examples/myplot.png)
 
 ## Prerequisites
 
