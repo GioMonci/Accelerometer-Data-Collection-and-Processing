@@ -28,9 +28,10 @@ and plot it for analysis.
    - Note: before running my code run some example code to make sure ESP32 or Ardunio connects to accelerometer
 2. **Run** `SerialToCsv.py` to save the serial data into a CSV file.
    - This script should create the csv file in the same dir
-   - Make sure that you Close Arduino IDE and change COM and serial monitor. (Finish later)
+   - Make sure that you close Arduino IDE or any application that monitors the serial port before running this script
+   - Make sure that you have the correct ports and baud rate at what your using.
 4. **Visualize** the data using `CsvToGraph.py` to generate graphs for insight into the collected data.
-   -
+   - AAAAAA
 
 ## Prerequisites
 
