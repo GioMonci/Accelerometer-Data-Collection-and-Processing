@@ -2,17 +2,27 @@ import serial
 import csv
 import time
 
-ser = serial.Serial('COM5', 115200, timeout=1)
 
-with open('sensor_data.csv', 'w', newline='') as csvfile:
-    writer = csv.writer(csvfile)
-    writer.writerow(["Time", "AccelX", "AccelY", "AccelZ"])
+def read_serial_data(port='COM5', baudrate=115200, duration=125, output_file='sensor_data.csv'):
+    try:
+        with serial.Serial(port, baudrate, timeout=1) as ser, open(output_file, 'w', newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(["AccelX", "AccelY", "AccelZ"])
 
-    start_time = time.time()
-    while time.time() - start_time < 10:
-        if ser.is_open:
-            inputData = ser.readline().strip().decode('ascii')
-            values = inputData.split(',')
-            elapsed_time = time.time() - start_time
-            values = [float(v) for v in values]
-            writer.writerow([elapsed_time] + values)
+            start_time = time.time()
+
+            while time.time() - start_time < duration:
+                if ser.in_waiting:
+                    try:
+                        raw_data = ser.readline().strip().decode('ascii')
+                        values = [float(v) for v in raw_data.split(',')]
+
+                        if len(values) == 3:  # Expecting 3-axis data
+                            writer.writerow(values)
+                    except (ValueError, UnicodeDecodeError) as e:
+                        print(f"Invalid data: {e}")
+    except serial.SerialException as e:
+        print(f"Failed to open serial port: {e}")
+
+if __name__ == "__main__":
+    read_serial_data()
