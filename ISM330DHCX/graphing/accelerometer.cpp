@@ -3,18 +3,12 @@
 Adafruit_ISM330DHCX ism330dhcx;
 
 void accelerometer_Setup(){
-  Serial.begin(115200);
-  while (!Serial){
-    delay(10); // will pause Zero, Leonardo, etc until serial console opens
-  }
+  //while (!Serial){delay(10); // will pause until serial console opens}
 
   if (!ism330dhcx.begin_I2C()) {
     // if (!ism330dhcx.begin_SPI(LSM_CS)) {
     // if (!ism330dhcx.begin_SPI(LSM_CS, LSM_SCK, LSM_MISO, LSM_MOSI)) {
-    Serial.println("Failed to find ISM330DHCX chip");
-    while (1) {
-      delay(10);
-    }
+    Serial.println("Failed to find ISM330DHCX chip");while (1) {delay(10);}
   }
 
   /*
@@ -24,7 +18,7 @@ void accelerometer_Setup(){
   LSM6DS_ACCEL_RANGE_16_G:
   */
 
-  ism330dhcx.setAccelRange(LSM6DS_ACCEL_RANGE_4_G);
+  ism330dhcx.setAccelRange(LSM6DS_ACCEL_RANGE_2_G);
   /*
   LSM6DS_RATE_SHUTDOWN
   LSM6DS_RATE_12_5_HZ
@@ -39,7 +33,7 @@ void accelerometer_Setup(){
   LSM6DS_RATE_6_66K_HZ
   */
 
-  ism330dhcx.setAccelDataRate(LSM6DS_RATE_208_HZ);
+  ism330dhcx.setAccelDataRate(LSM6DS_RATE_104_HZ);
   
 
   // Maybe
@@ -54,11 +48,12 @@ void accelerometer_loop(){
   sensors_event_t gyro;
   sensors_event_t temp;
   ism330dhcx.getEvent(&accel, &gyro, &temp);
-  Serial.print(accel.acceleration.x);
+  //Serial.print(millis());
+  //Serial.print(",");
+  Serial.print(accel.acceleration.x, 6);
   Serial.print(",");
-  Serial.print(accel.acceleration.y);
+  Serial.print(accel.acceleration.y, 6);
   Serial.print(",");
-  Serial.print(accel.acceleration.z);
+  Serial.print(accel.acceleration.z, 6);
   Serial.println();
-  delay(100);
 }
